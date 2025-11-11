@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.VehicleMapper">
+    <resultMap id="VehicleBaseMap" type="com.example.demo.Entities.Vehicle">
+        <result column="Vehicle_ID" property="vehicleId"></result>
+        <result column="Policy_ID" property="policyId"></result>
+        <result column="Year" property="year"></result>
+        <result column="Make" property="make"></result>
+        <result column="Model" property="model"></result>
+        <result column="Color" property="color"></result>
+        <result column="Mileage" property="mileage"></result>
+        <result column="VIN_Number" property="vinNumber"></result>
+        <result column="Vehicle_Number_Plate" property="vehicleNumberPlate"></result>
+        <result column="Vehicle_Registered_State" property="vehicleRegisteredState"></result>
+
+        <result column="Created_Date" property="createdDate"></result>
+        <result column="Active" property="active"></result>
+    </resultMap>
+
+    <select id="getVehicleTable" resultMap="VehicleBaseMap">
+        SELECT * FROM VEHICLE
+    </select>
+</mapper>

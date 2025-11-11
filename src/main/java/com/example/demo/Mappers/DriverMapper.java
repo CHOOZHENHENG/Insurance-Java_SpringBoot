@@ -1,0 +1,12 @@
+package com.example.demo.Mappers;
+
+import com.example.demo.Entities.Driver;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+@Mapper
+public interface DriverMapper {
+
+    List<Driver> getDriverTable();
+}

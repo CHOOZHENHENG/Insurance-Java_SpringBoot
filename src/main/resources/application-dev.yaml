@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: finalDev
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=Final;encrypt=true;trustServerCertificate=true;
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: FinalAiaTask
+    password: finalTaskAIA25012025
+server:
+  port: 8080
+  error:
+    include-message: always
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+#For both wins authentication and sql server authentication
+#change the sql server instance to port 1433(in sql server configuration manager)
+
+#For sql server authentication
+#add sql login, and database user, and assign db_owner role to database user
+#optional/mandatory and checked trustServerCertificate
+  #encryption=false, trustServerCertificate=false => can
+  #encryption=false, trustServerCertificate=true => can
+  #encryption=true, trustServerCertificate=false => can't
+  #encryption=true, trustServerCertificate=true => can
+
+#for windows authentication
+#put mssql-jdbc_auth-12.6.4.x64 into C:/Windows/System32, and
+#jdbc:sqlserver://localhost:1433;databaseName=Final;integratedSecurity=true;encrypt=true;trustServerCertificate=true;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.BillMapper">
+    <resultMap id="BillBaseMap" type="com.example.demo.Entities.Bill">
+        <result column="Bill_ID" property="billId"></result>
+        <result column="Policy_ID" property="policyId"></result>
+        <result column="Due_Date" property="dueDate"></result>
+        <result column="Minimum_Payment" property="minimumPayment"></result>
+        <result column="Created_Date" property="createdDate"></result>
+        <result column="Balance" property="balance"></result>
+        <result column="Status" property="status"></result>
+    </resultMap>
+
+    <select id="getBillTable" resultMap="BillBaseMap">
+        SELECT * FROM BILL;
+    </select>
+</mapper>
