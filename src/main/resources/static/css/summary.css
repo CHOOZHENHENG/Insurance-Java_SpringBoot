@@ -1,0 +1,32 @@
+.bigContainer{
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+}
+
+div#histDiv, div#barDiv, div#gauge{
+    flex: 1 1 200px;
+}
+
+div#pieDiv{
+    flex: 1.5 1 200px;
+}
+
+.gaugeContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.gaugeContainer p{
+    font: 16px Arial;
+    font-weight: 600;
+    padding-left: 152px;
+    margin: 0;
+}
+
+@media (max-width: 480px) {
+  .gaugeContainer p{
+    padding-left: 85px;
+    font: 10px;
+  }
+}

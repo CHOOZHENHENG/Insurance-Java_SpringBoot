@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.DriverMapper">
+    <resultMap id="DriverBaseMap" type="com.example.demo.Entities.Driver">
+        <result column="Driver_ID" property="driverId"></result>
+        <result column="Policy_ID" property="policyId"></result>
+        <result column="Title" property="title"></result>
+        <result column="First_Name" property="firstName"></result>
+        <result column="Last_Name" property="lastName"></result>
+        <result column="Date_Of_Birth" property="dateOfBirth"></result>
+        <result column="Email_Address" property="emailAddress"></result>
+        <result column="Phone_Number" property="phoneNumber"></result>
+        <result column="SSN" property="ssn"></result>
+        <result column="License_Issued_Date" property="licenseIssuedDate"></result>
+
+        <result column="License_Issued_State" property="licenseIssuedState"></result>
+        <result column="License_Number" property="licenseNumber"></result>
+        <result column="As_Primary_Policy_Holder" property="asPrimaryPolicyHolder"></result>
+        <result column="Primary_Policy_Holder_Relation" property="primaryPolicyHolderRelation"></result>
+        <result column="Gender" property="gender"></result>
+        <result column="Marital_Status" property="maritalStatus"></result>
+        <result column="Created_Date" property="createdDate"></result>
+        <result column="Active" property="active"></result>
+    </resultMap>
+
+    <select id="getDriverTable" resultMap="DriverBaseMap">
+        SELECT * FROM DRIVER
+    </select>
+</mapper>

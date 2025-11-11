@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>SummaryApiView</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script th:inline="javascript">
+    var countVehicleMakeData = /*[[${summaryList.vehicleMakeCount}]]*/ [];
+    var vpByStatesData = /*[[${summaryList.violationPointPerState}]]*/ [];
+    var vpByDriversData = /*[[${summaryList.violationPointPerDriver}]]*/ [];
+    var policiesYearData = /*[[${summaryList.policiesCreatedPerYear}]]*/ [];
+  </script>
+  <script type="text/javascript" src="js/vehicleMakeCount.js"></script>
+  <script type="text/javascript" src="js/statesViolationPoint.js"></script>
+  <script type="text/javascript" src="js/driversViolationPoint.js"></script>
+  <script type="text/javascript" src="js/policiesPerYear.js"></script>
+  <link rel="stylesheet" href="css/summary.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="menu">
+    <a href="http://localhost:8080/summaryAPI">Summary API</a>
+    <a href="http://localhost:8080/activeVehicle">Active Vehicle</a>
+    <a href="http://localhost:8080/unpaidDriver">Unpaid Driver</a>
+  </div>
+  <div class="h1">
+    <h1>Summary Dashboard</h1>
+  </div>
+  <div class="bigContainer">
+    <div id="barDiv"></div>
+    <div id="pieDiv"></div>
+    <div id="histDiv"></div>
+    <div class="gaugeContainer">
+      <p>Policies created per year</p>
+      <div id="gaugeDiv"></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener("pageshow", () => {
+      const currentPath = window.location.pathname;
+
+      document.querySelectorAll("#menu a").forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

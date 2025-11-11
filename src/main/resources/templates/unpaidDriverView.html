@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Unpaid Driver</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/table.css">
+</head>
+<body>
+  <div id="menu">
+    <a href="http://localhost:8080/summaryAPI">Summary API</a></li>
+    <a href="http://localhost:8080/activeVehicle">Active Vehicle</a></li>
+    <a class="active" href="http://localhost:8080/unpaidDriver">Unpaid Driver</a></li>
+  </div>
+  <div class="h1">
+    <h1>Unpaid Driver Table</h1>
+  </div>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Policy Number</th>
+        <th>Total Amount</th>
+        <th>Balance</th>
+        <th>Minimum Payment</th>
+        <th>Due Date</th>
+        <th>Payment Option</th>
+      </tr>
+      <tr th:each="udList : ${unpaidDriverList}">
+        <td th:text="${udList.name}"></td>
+        <td th:text="${udList.policyNumber}"></td>
+        <td th:text="${udList.totalAmount}"></td>
+        <td th:text="${udList.balance}"></td>
+        <td th:text="${udList.minPayment}"></td>
+        <td th:text="${udList.dueDate}"></td>
+        <td th:text="${udList.paymentOption}"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

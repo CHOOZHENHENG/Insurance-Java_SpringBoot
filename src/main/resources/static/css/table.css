@@ -1,0 +1,25 @@
+.table-container{
+    overflow-y: auto;
+    height: 550px;
+    width: 90%;
+    margin: auto;
+}
+
+.table-container thead th{
+    position: sticky;
+    top: 0px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td{
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+}
+
+th{
+    background: #eee;
+}

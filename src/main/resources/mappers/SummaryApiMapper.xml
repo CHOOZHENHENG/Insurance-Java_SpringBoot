@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.SummaryApiMapper">
+    <resultMap id="VehicleMakeBaseMap" type="com.example.demo.ResultMapEntities.SummaryAPI.VehicleMakeCount">
+        <result column="Make" property="make"></result>
+        <result column="count" property="count"></result>
+    </resultMap>
+
+    <select id="getVehicleMakeCount" resultMap="VehicleMakeBaseMap">
+        SELECT
+            Make, Count(Make) AS count
+        FROM
+            Vehicle
+        GROUP BY
+            Make
+    </select>
+
+    <resultMap id="ViolationPointPerStateBaseMap" type="com.example.demo.ResultMapEntities.SummaryAPI.ViolationPointPerState">
+        <result column="State" property="state"></result>
+        <result column="violationPoint" property="violationPoint"></result>
+    </resultMap>
+
+    <select id="getViolationPointPerState" resultMap="ViolationPointPerStateBaseMap">
+        SELECT
+            CASE
+                WHEN da.state = 'AZ' THEN 'Arizona'
+                WHEN da.state = 'CA' THEN 'California'
+                WHEN da.state = 'CO' THEN 'Colorado'
+                WHEN da.state = 'IL' THEN 'Illinois'
+                WHEN da.state = 'NY' THEN 'New York'
+                WHEN da.state = 'TX' THEN 'Texas'
+                WHEN da.state = 'WA' THEN 'Washington'
+            END AS state,
+            SUM(dtvr.Traffic_Violation_Code_ID) violationPoint
+        FROM
+            Driver_Address da
+        INNER JOIN
+            Driver d
+        ON
+            da.Driver_ID = d.Driver_ID
+        INNER JOIN
+            Driver_Traffic_Violation_Record dtvr
+        ON
+            d.Driver_ID = dtvr.Driver_ID
+        INNER JOIN
+            Traffic_Violation_Code tvc
+        ON
+            dtvr.Traffic_Violation_Code_ID = tvc.Traffic_Violation_Code_ID
+        GROUP BY
+            da.state
+    </select>
+
+    <resultMap id="DriverTrafficViolationPointBaseMap" type="com.example.demo.ResultMapEntities.SummaryAPI.ViolationPointPerDriver">
+        <result column="idName" property="idName"></result>
+        <result column="violationCount" property="violationCount"></result>
+    </resultMap>
+
+    <select id="getViolationPointPerDriver" resultMap="DriverTrafficViolationPointBaseMap">
+        SELECT
+            CONCAT(d.Driver_ID, '-', d.First_Name, ' ', d.Last_Name) AS idName, COUNT(r.Driver_ID) AS violationCount
+        FROM
+            Driver d
+        INNER JOIN
+            Driver_Traffic_Violation_Record r
+        ON
+            d.Driver_ID = r.Driver_ID
+        GROUP BY
+            d.Driver_ID, d.First_Name, d.Last_Name
+        ORDER BY
+            violationCount DESC
+    </select>
+
+    <resultMap id="NumOfPolicyBaseMap" type="com.example.demo.ResultMapEntities.SummaryAPI.PoliciesCreatedPerYear">
+        <result column="year" property="year"></result>
+        <result column="policyCreated" property="policyCreated"></result>
+    </resultMap>
+
+    <select id="getPoliciesCreatedPerYear" resultMap="NumOfPolicyBaseMap">
+        SELECT
+            YEAR(p.Created_Date) AS year, COUNT(*) AS policyCreated
+        FROM
+            Policy p
+        GROUP BY
+            YEAR(p.Created_Date)
+        ORDER BY
+            year ASC;
+    </select>
+</mapper>

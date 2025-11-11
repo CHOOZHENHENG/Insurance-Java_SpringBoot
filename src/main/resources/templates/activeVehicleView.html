@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Active Vehicles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/table.css">
+</head>
+<body>
+  <div id="menu">
+    <a href="http://localhost:8080/summaryAPI">Summary API</a></li>
+    <a class="active" href="http://localhost:8080/activeVehicle">Active Vehicle</a></li>
+    <a href="http://localhost:8080/unpaidDriver">Unpaid Driver</a></li>
+  </div>
+  <div class="h1">
+    <h1>Active Vehicle Table</h1>
+  </div>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Vehicle Number Plate</th>
+        <th>Year Name</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>Mileage</th>
+        <th>Active</th>
+      </tr>
+      <tr th:each="avList : ${activeVehicleList}">
+        <td th:text="${avList.vehicleNumberPlate}"></td>
+        <td th:text="${avList.year}"></td>
+        <td th:text="${avList.make}"></td>
+        <td th:text="${avList.model}"></td>
+        <td th:text="${avList.color}"></td>
+        <td th:text="${avList.mileage}"></td>
+        <td th:text="${avList.active}"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

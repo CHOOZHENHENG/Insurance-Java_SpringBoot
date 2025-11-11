@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.UnpaidDriverMapper">
+    <resultMap id="UnpaidDriverBaseMap" type="com.example.demo.ResultMapEntities.UnpaidDriver">
+        <result column="name" property="name"></result>
+        <result column="Policy_Number" property="policyNumber"></result>
+        <result column="Total_Amount" property="totalAmount"></result>
+        <result column="Balance" property="balance"></result>
+        <result column="Minimum_Payment" property="minPayment"></result>
+        <result column="Due_Date" property="dueDate"></result>
+        <result column="Payment_Option" property="paymentOption"></result>
+    </resultMap>
+
+    <select id="getUnpaidDriver" resultMap="UnpaidDriverBaseMap">
+        SELECT
+            CONCAT(d.Title, ' ', d.First_Name, ' ', d.Last_Name) AS name, p.Policy_Number, p.Total_Amount, b.Balance, b.Minimum_Payment, b.Due_Date, p.Payment_Option
+        FROM
+            Driver d
+        INNER JOIN
+            Policy p
+        ON
+            p.Policy_ID = d.Policy_ID
+        INNER JOIN
+            Bill b
+        ON
+            p.Policy_ID = b.Policy_ID
+        WHERE
+            b.Status = 'Unpaid'
+    </select>
+
+</mapper>

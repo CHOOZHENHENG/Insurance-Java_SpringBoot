@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.ActiveVehicleMapper">
+    <resultMap id="ActiveVehicleBaseMap" type="com.example.demo.ResultMapEntities.ActiveVehicle">
+        <result column="Vehicle_Number_Plate" property="vehicleNumberPlate"></result>
+        <result column="Year" property="year"></result>
+        <result column="Make" property="make"></result>
+        <result column="Model" property="model"></result>
+        <result column="Color" property="color"></result>
+        <result column="Mileage" property="mileage"></result>
+        <result column="Active" property="active"></result>
+    </resultMap>
+
+    <select id="getActiveVehicle" resultMap="ActiveVehicleBaseMap">
+        SELECT
+            Vehicle_Number_Plate, Year, Make, Model, Color, Mileage,
+            CASE
+                WHEN Active = '1' THEN 'True'
+                ELSE CAST(Active AS CHAR)
+            END AS active
+        FROM Vehicle
+        WHERE Active = 1
+    </select>
+</mapper>

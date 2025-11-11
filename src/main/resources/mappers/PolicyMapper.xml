@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.Mappers.PolicyMapper">
+    <resultMap id="PolicyBaseMap" type="com.example.demo.Entities.Policy">
+        <result column="Policy_ID" property="policyID"></result>
+        <result column="Policy_Number" property="policyNumber"></result>
+        <result column="Policy_Effective_Date" property="policyEffectiveDate"></result>
+        <result column="Policy_Expire_Date" property="policyExpireDate"></result>
+        <result column="Payment_Option" property="paymentOption"></result>
+        <result column="Total_Amount" property="totalAmount"></result>
+        <result column="Active" property="active"></result>
+        <result column="Additional_Info" property="additionalInfo"></result>
+        <result column="Created_Date" property="createdDate"></result>
+    </resultMap>
+
+    <select id="getPolicyTable" resultMap="PolicyBaseMap">
+        SELECT * FROM POLICY
+    </select>
+</mapper>
